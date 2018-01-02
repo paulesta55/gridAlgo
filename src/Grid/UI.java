@@ -114,10 +114,6 @@ public class UI extends JFrame implements ActionListener{
 		
 		add(main);
 		setVisible(true);
-                
-                //manGridProcess = new GridProcess(manGrid,iO,253,302);
-		
-		//System.out.println("process = "+manGridProcess.getStateProcess());
 		
 		
 	}
