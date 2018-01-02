@@ -5,10 +5,7 @@ package Grid;
  *
  * @author ensea
  */
-import java.awt.*; // pour importer Color et Container
-import javax.swing.*; // pour importer tout le reste : JFrame,…
-import java.awt.event.*;
-import java.util.*;
+
 import java.lang.*;
 import java.lang.Math;
 
