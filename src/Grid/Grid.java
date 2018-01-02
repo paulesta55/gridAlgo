@@ -162,12 +162,7 @@ public class Grid extends JPanel {
 
             //System.out.println("ok");
         } //System.out.println("matrice ok");
-        //for(i=0;i<(int)this.width;i++){
-        //for(j=0;j<this.length/5;j++){
-        //System.out.print(matrix[i][j]);
-        //}
-        //System.out.print("\n");
-        //}
+
         else {//pour paintMatrix = true on affiche la matrice à la place du dessin initial
             for (i = 0; i < height; i++) {
                 for (j = 0; j < width; j++) {
