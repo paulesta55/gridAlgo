@@ -68,10 +68,8 @@ public class Grid extends JPanel {
         this.streetWidthX = (int) streetWidth * width / (height + width);
         this.blockSizeW = (int) ((this.width - (nbBlocks + 1) * streetWidthX) / nbBlocks);
         this.blockSizeH = (int) ((this.height - (nbBlocks + 1) * streetWidthY) / nbBlocks);
-        //this.nbBuildings = r.nextInt((int) (blockSizeH/(nbBlocks) ));
         this.nbBuildings = r.nextInt(5) + 1;
         this.buildingY = (int) (height - (nbBlocks + 1) * streetWidthY) / (nbBlocks * nbBuildings);
-        //this.buildingX = (int) (width-(nbBlocks+1)*streetWidthX)/(nbBlocks*nbBuildings);
 
     }
 
