@@ -22,7 +22,7 @@ public class Grid extends JPanel {
     private int nbBlocks, streetWidthY, streetWidthX;
     private int nbBuildings;
     private boolean processDone = false;
-    //private int buildingX;
+    private int buildingX = 1;
     private int buildingY;
     private int blockSizeW;
     private int blockSizeH;
@@ -88,7 +88,7 @@ public class Grid extends JPanel {
         this.buildingY = (int) (height - (nbBlocks + 1) * streetWidthY) / (nbBlocks * nbBuildings);
         int i = streetWidthY, j = 0;
         int k = 0;
-        int buildingX = 1;
+
         int c = 0;
         if (paintMatrix == false) {//paintMatrix permet de controler le remplissage de la matrice : pour paintMatrix =  false on crée une nouvelle matrice
             for (i = 0; i < this.height; i++) {
