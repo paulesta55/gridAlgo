@@ -26,8 +26,8 @@ public class UI extends JFrame implements ActionListener{
 	private JTextField streetWidth;
 	private Grid manGrid ;
 	private GridProcess manGridProcess;
-	private JRadioButton radioButtonIn = new JRadioButton("In");
-	private JRadioButton radioButtonOut = new JRadioButton("Out");
+	private JRadioButton radioButtonIn = new JRadioButton("In",true);
+	private JRadioButton radioButtonOut = new JRadioButton("Out",false);
 
 	
 	public void actionPerformed(ActionEvent e){
@@ -114,7 +114,12 @@ public class UI extends JFrame implements ActionListener{
 		
 		add(main);
 		setVisible(true);
-		
+
 		
 	}
+
+    public boolean getIO(){
+
+        return radioButtonIn.isSelected();
+    }
 }
