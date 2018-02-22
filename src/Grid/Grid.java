@@ -6,9 +6,9 @@
 package Grid;
 
 /**
- *
  * @author ensea
  */
+
 import java.awt.*; // pour importer Color et Container
 import javax.swing.*; // pour importer tout le reste : JFrame,…
 import java.awt.event.*;
@@ -88,42 +88,25 @@ public class Grid extends JPanel {
         int k = 0;
 
         int c = 0;
-        if (paintMatrix == false) {//paintMatrix permet de controler le remplissage de la matrice : pour paintMatrix =  false on crée une nouvelle matrice
-            for (i = 0; i < this.height; i++) {
-                for (j = 0; j < this.width; j++) {
-                    matrix[i][j] = '0';
-                }
+        for (i = 0; i < this.height; i++) {
+            for (j = 0; j < this.width; j++) {
+                matrix[i][j] = '0';
             }
-            i = streetWidthY;
-            j = 0;
-            for (int m = 0; m < nbBlocks; m++) {
+        }
+        i = streetWidthY;
+        j = 0;
+        for (int m = 0; m < nbBlocks; m++) {
 
-                for (int n = 0; n < nbBuildings; n++) {
-                    //while(n != blockSizeH){
-                    j = streetWidthX;
-                    for (int l = 0; l < nbBlocks; l++) {
-                        //for(int k=0; k<blockSizeW;k++){
-                        while (k < 3 * blockSizeW / 4) {//choit de blockSize/4 arbitraire pour que le dernier building ne soit pas trop petit
-                            buildingX = r.nextInt(blockSizeW - k);//on génère une longueur aléatoire pour chaque building (on le fait en respectant la taille du block cf k)
-                            choiceColor();//On choisit le nombre d'étage du batiment
+            for (int n = 0; n < nbBuildings; n++) {
+                //while(n != blockSizeH){
+                j = streetWidthX;
+                for (int l = 0; l < nbBlocks; l++) {
+                    //for(int k=0; k<blockSizeW;k++){
+                    while (k < 3 * blockSizeW / 4) {//choit de blockSize/4 arbitraire pour que le dernier building ne soit pas trop petit
+                        buildingX = r.nextInt(blockSizeW - k);//on génère une longueur aléatoire pour chaque building (on le fait en respectant la taille du block cf k)
+                        choiceColor();//On choisit le nombre d'étage du batiment
 
-                            g2.setColor(color);
-                            g2.fillRect(j, i, buildingX, buildingY);
-                            for (int h = j; h < (j + buildingX); h++) {
-                                for (int q = i; q < (i + buildingY); q++) {
-                                    matrix[q][h] = (char) nColor;
-                                    //System.out.println(matrix[q][h]);
-                                }
-                            }
-                            j += buildingX;
-                            c += 1;
-                            k += buildingX;
-                        }
-                        buildingX = blockSizeW - k;
-                        //g2.setColor(Color.black);
-                        //g2.drawRect(j, i, buildingX, buildingY);
-                        choiceColor();
-                        g2.setColor(this.color);
+                        g2.setColor(color);
                         g2.fillRect(j, i, buildingX, buildingY);
                         for (int h = j; h < (j + buildingX); h++) {
                             for (int q = i; q < (i + buildingY); q++) {
@@ -132,94 +115,108 @@ public class Grid extends JPanel {
                             }
                         }
                         j += buildingX;
-                        j += streetWidthX;
-                        k = 0;
-                        //buildingX = 1;
-                        //System.out.println("nombre de buildings tracés en cours =" + c);
+                        c += 1;
+                        k += buildingX;
                     }
-                    i += buildingY;
-                    //n+=buildingY;
-                }
-                //n=0;
-                i += streetWidthY;
-
-            }
-            g2.setColor(Color.black);
-            g2.fillOval(vicX-5, vicY, 10, 10);
-            process = new GridProcess(this.matrix, this.iO, this.vicX, this.vicY, this.width, this.height, this.blockSizeW, this.blockSizeH, this.streetWidthX, this.streetWidthY, this.nbBlocks);
-            System.out.println("process = " + process.getStateProcess());
-            System.out.println("deltaX = " + process.calculDelta()[0]);
-            System.out.println("deltaY = " + process.calculDelta()[1]);
-            g2.setColor(Color.white);
-            if (process.getStateProcess() == true) {
-                g2.fillOval(process.getXTar(), process.getYTar(), 10, 10);
-                g2.setColor(Color.black);
-                g2.drawLine(vicX, vicY, process.getXTar(), vicY);
-                g2.drawLine(process.getXTar(), vicY, process.getXTar(), process.getYTar());
-            }
-
-            //System.out.println("ok");
-        } //System.out.println("matrice ok");
-
-        else {//pour paintMatrix = true on affiche la matrice à la place du dessin initial
-            for (i = 0; i < height; i++) {
-                for (j = 0; j < width; j++) {
-                    switch (process.getNewMatrix()[i][j]) {
-                        case 0:
-                            this.color = blue3;
-
-                            break;
-                        case 1:
-                            this.color = red1;
-
-                            break;
-                        case 2:
-                            this.color = blue2;
-
-                            break;
-                        case 3:
-                            this.color = blue1;
-
-                            break;
-                        case 4:
-                            this.color = green3;
-
-                            break;
-                        case 5:
-                            this.color = green2;
-
-                            break;
-                        case 6:
-                            this.color = green1;
-
-                            break;
-                        case 7:
-                            this.color = red4;
-
-                            break;
-                        case 8:
-                            this.color = red3;
-
-                            break;
-
-                        case 9:
-                            //System.out.println(matrix[i][j]);
-                            this.color = red2;
-                            break;
-
-                        default:
-                            this.color = blue3;
-                            break;
+                    buildingX = blockSizeW - k;
+                    //g2.setColor(Color.black);
+                    //g2.drawRect(j, i, buildingX, buildingY);
+                    choiceColor();
+                    for (int h = j; h < (j + buildingX); h++) {
+                        for (int q = i; q < (i + buildingY); q++) {
+                            matrix[q][h] = (char) nColor;
+                            //System.out.println(matrix[q][h]);
+                        }
                     }
-                    //System.out.println(this.nColor);
-                    g2.setColor(this.color);
-                    g2.drawRect(j, i, 1, 1);
-
+                    j += buildingX;
+                    j += streetWidthX;
+                    k = 0;
+                    //buildingX = 1;
+                    //System.out.println("nombre de buildings tracés en cours =" + c);
                 }
+                i += buildingY;
+                //n+=buildingY;
             }
-            g2.setColor(Color.black);
-            g2.fillOval(vicX-5, vicY, 10, 10);
+            //n=0;
+            i += streetWidthY;
+
         }
+        g2.setColor(Color.black);
+        g2.fillOval(vicX - 5, vicY, 10, 10);
+        process = new GridProcess(this.matrix, this.iO, this.vicX, this.vicY, this.width, this.height, this.blockSizeW, this.blockSizeH, this.streetWidthX, this.streetWidthY, this.nbBlocks);
+        System.out.println("process = " + process.getStateProcess());
+        System.out.println("deltaX = " + process.calculDelta()[0]);
+        System.out.println("deltaY = " + process.calculDelta()[1]);
+        g2.setColor(Color.white);
+        if (process.getStateProcess() == true) {
+            this.matrix = process.getNewMatrix();
+            g2.fillOval(process.getXTar(), process.getYTar(), 10, 10);
+            g2.setColor(Color.black);
+            g2.drawLine(vicX, vicY, process.getXTar(), vicY);
+            g2.drawLine(process.getXTar(), vicY, process.getXTar(), process.getYTar());
+        }
+
+        //System.out.println("ok");
+
+
+        for (i = 0; i < height; i++) {
+            for (j = 0; j < width; j++) {
+                switch (matrix[i][j]) {
+                    case 0:
+                        this.color = blue3;
+
+                        break;
+                    case 1:
+                        this.color = red1;
+
+                        break;
+                    case 2:
+                        this.color = blue2;
+
+                        break;
+                    case 3:
+                        this.color = blue1;
+
+                        break;
+                    case 4:
+                        this.color = green3;
+
+                        break;
+                    case 5:
+                        this.color = green2;
+
+                        break;
+                    case 6:
+                        this.color = green1;
+
+                        break;
+                    case 7:
+                        this.color = red4;
+
+                        break;
+                    case 8:
+                        this.color = red3;
+
+                        break;
+
+                    case 9:
+                        //System.out.println(matrix[i][j]);
+                        this.color = red2;
+                        break;
+
+                    default:
+                        this.color = blue3;
+                        break;
+                }
+                //System.out.println(this.nColor);
+                g2.setColor(this.color);
+                g2.drawRect(j, i, 1, 1);
+
+            }
+        }
+        g2.setColor(Color.black);
+        g2.fillOval(vicX - 5, vicY, 10, 10);
+
         System.out.println("end");
     }
 
